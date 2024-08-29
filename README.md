@@ -45,12 +45,21 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
   - Create more Composables using the Composition API
 
 ## Approach
-- All contextual logic is handles in `/components/shows` & `/components/show`. 
-- All other components should be 'generic' components without knowledge about TV Shows.
-- Utils functions in /utils/data helps transform the API Data (which can vary per query) to a more simplistic data format so that it can be used by `components/overview/[components].
-  - This helps to get the data in a fixed format so it can be typed accordingly and used generic components (like `overview`).
-  - There are also util functions available to sort and categorize the TV shows based on their genres.
+- All contextual logic (TV Shows) is handles in the components in `/components/shows` & `/components/show`. 
+- All other components are 'generic' components without contextual knowledge about TV Shows or API structures.
+- Utils in `/utils/data` helps transform the API Data to a generic data format
+  - We will use the `<Overview>` component `components/overview/[components] to handle this data type.
+  - This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres.
 - The Overview component in `/components/overview`  is used to display the transformed data in a grid, list or horizontal scrolling view.
+
+### Abstraction & separation of concerns
+This is over-engineerd for what it needs to do.
+The decision behind this is that I want to display my thinking process and how I would approach a project the best. i.e. by thinking more abstract and future proof. 
+For example: 
+- What if we want to use different apis to get shows or additional information about a show?
+- What if we want to show more than just shows?
+- What if we want to display the shows in a different way?
+- What if we want to categorize the shows differently?
 
 ### TO DO
 - [x] Create a Vue / Nuxt 3 project
@@ -69,7 +78,7 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
 - [x] Switch between GRID or LIST view on the `/shows` and `/search` page.
 - [ ] Add a loading spinner or skeleton when fetching data
 - [ ] Paged TV Shows & Search Results (using `@tanstack/vue-query`)
-- [ ] Componentize the `<Overview />` further into child components (and make use of useOverviewLayout() in child components to get the state)
+- [x] Componentize the `<Overview />` further into child components (and make use of useOverviewLayout() in child components to get the state)
 - [ ] Add more unit tests, also for components
 - [ ] e2e tests using Playwright
 
@@ -178,10 +187,7 @@ bun run preview
 ```
 
 ### Test
-Tests are written using Vitest. To run the tests, run:
-
-```bash
-Run:
+Tests are written using Vitest, run:
 
 ```bash
 # npm

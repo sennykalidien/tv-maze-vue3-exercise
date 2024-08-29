@@ -3,7 +3,7 @@ import type { Show } from "~/types";
 
 const maxItemsPerPage = 250;
 
-export default function useTvShowsList() {
+export default function useShowsList() {
   return useInfiniteQuery({
     queryKey: ["tv-shows", "tv-shows-list"],
     queryFn: () => $tvmaze<Show[]>(`shows`),
