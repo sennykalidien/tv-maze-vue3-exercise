@@ -45,16 +45,20 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
   - Create more Composables using the Composition API
 
 ## Approach
-- All contextual logic (TV Shows) is handles in the components in `/components/shows` & `/components/show`. 
+- All contextual logic (TV Shows) is scoped and handled in components located in `/components/shows` & `/components/show`. 
 - All other components are 'generic' components without contextual knowledge about TV Shows or API structures.
 - Utils in `/utils/data` helps transform the API Data to a generic data format
-  - We will use the `<Overview>` component `components/overview/[components] to handle this data type.
-  - This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres.
+- This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres.
+- We use the `<Overview>` component `components/overview/[components] to use this data format to display the shows.
 - The Overview component in `/components/overview`  is used to display the transformed data in a grid, list or horizontal scrolling view.
 
 ### Abstraction & separation of concerns
-This is over-engineerd for what it needs to do.
+**This is over-engineerd for what it needs to do.**
+
+The data didn't need to be transformed and logic didn't need to be abstracted. 
+
 The decision behind this is that I want to display my thinking process and how I would approach a project the best. i.e. by thinking more abstract and future proof. 
+
 For example: 
 - What if we want to use different apis to get shows or additional information about a show?
 - What if we want to show more than just shows?
