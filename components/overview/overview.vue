@@ -40,7 +40,7 @@ const classes = computed(() => {
               <NuxtImg :class="classes.detailImage" :src="item.image" />
               <div>
                 <header class="flex items-center">
-                  <h2 class="font-bold text-lg capitalize text-blue-300">
+                  <h2 class="text-lg capitalize text-primary">
                     {{ item.title }}
                   </h2>
                 </header>

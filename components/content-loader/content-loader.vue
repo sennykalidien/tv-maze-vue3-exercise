@@ -1,18 +1,17 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
-  import type { NuxtError } from "#app";
+import type { NuxtError } from "#app";
 
-  interface Props {
-    data: T | null
-    loading: boolean
-    error: NuxtError | Error | null | undefined
-  }
+interface Props {
+  data: T | null;
+  loading: boolean;
+  error: NuxtError | Error | null | undefined;
+}
 
-  const props = withDefaults(defineProps<Props>(), {
-    data: null,
-    loading: false,
-    error: undefined
-    }
-  )
+withDefaults(defineProps<Props>(), {
+  data: null,
+  loading: false,
+  error: undefined,
+});
 </script>
 <template>
   <!-- loading -->
@@ -20,9 +19,7 @@
     <template v-if="$slots.loadingContent">
       <slot name="loadingContent" />
     </template>
-    <template v-else>
-      Loading...
-    </template>
+    <template v-else> Loading... </template>
   </template>
 
   <!-- error -->
@@ -34,7 +31,5 @@
   <template v-if="data">
     <slot name="content" />
   </template>
-  <template v-else>
-    No data has been found
-  </template>
+  <template v-else> No data has been found </template>
 </template>

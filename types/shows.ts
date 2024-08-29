@@ -71,7 +71,7 @@ export interface Show {
   _links: Links;
 }
 
-export interface ShowSearch {
+export interface SearchedShow {
   score: number;
   show: Show;
 }

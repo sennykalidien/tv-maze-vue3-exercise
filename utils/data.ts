@@ -1,47 +1,11 @@
-import type { CategorizedOverview, OverviewItem, Show } from "~/types";
-
-export const mutateData = (apiData: Show[]): OverviewItem[] => {
-  return apiData.map((show) => {
-    return {
-      id: show.id,
-      title: show.name,
-      url: `/shows/${show.id}`,
-      image: show.image?.medium,
-      metaList: [
-        {
-          name: "Genres",
-          value: show.genres.join(", "),
-        },
-        {
-          name: "Language",
-          value: show.language,
-        },
-        {
-          name: "Rating",
-          value: show.rating?.average?.toString(),
-        },
-        {
-          name: "Status",
-          value: show.status,
-        },
-        {
-          name: "Schedule",
-          value: show.schedule.days.join(", "),
-        },
-        {
-          name: "Network",
-          value: show.network?.name,
-        },
-      ],
-    };
-  });
-};
+import type { Data, DataCategorized } from "~/types";
 
 /**
  * Sort data by rating
- * @param data
+ * @param data Data
+ * @returns Data
  */
-export const sortByRating = (data: OverviewItem[]): OverviewItem[] => {
+export const sortDataByRating = (data: Data): Data => {
   return data.sort((a, b) => {
     const ratingA = a.metaList.find((meta) => meta.name === "Rating")?.value;
     const ratingB = b.metaList.find((meta) => meta.name === "Rating")?.value;
@@ -55,10 +19,9 @@ export const sortByRating = (data: OverviewItem[]): OverviewItem[] => {
 /**
  * Categorize data by key
  * @param data
- * @param key
  */
-export const categorizeByGenre = (data: OverviewItem[]): CategorizedOverview[] => {
-  const categorizedOverview: { [key: string]: OverviewItem[] } = {};
+export const categorizeDataByGenre = (data: Data): DataCategorized => {
+  const categorizedOverview: { [key: string]: Data } = {};
 
   data.forEach((item) => {
     const genres = item.metaList.find((meta) => meta.name === "Genres")?.value;
@@ -67,8 +30,10 @@ export const categorizeByGenre = (data: OverviewItem[]): CategorizedOverview[] =
       return;
     }
 
+    // Genres from API are separated by commas
     genres.split(",").forEach((genre) => {
       genre = genre.trim();
+
       if (!categorizedOverview[genre]) {
         categorizedOverview[genre] = [];
       }

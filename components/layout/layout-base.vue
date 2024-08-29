@@ -5,10 +5,9 @@
   <main>
     <slot name="base-content" />
   </main>
-  <footer class="container mx-auto py-10">
+  <footer class="container mx-auto py-10 px-4">
     <slot name="base-footer" />
   </footer>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>

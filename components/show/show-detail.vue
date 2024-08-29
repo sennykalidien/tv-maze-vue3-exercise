@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { sortByRating } from "~/utils/data";
-import { mutateData } from "~/utils";
+import { sortDataByRating } from "~/utils/data";
+import { mutateShowToData } from "~/utils";
 import type { Show } from "~/types/shows";
 
 interface Props {
@@ -14,7 +14,7 @@ const { data: apiData, pending, error } = await useTvmazeData<Show | null>(`/sho
 const data = computed(() => {
   if (!apiData.value) return [];
 
-  return sortByRating(mutateData([{ ...apiData.value }]));
+  return sortDataByRating(mutateShowToData([{ ...apiData.value }]));
 });
 </script>
 
@@ -27,19 +27,22 @@ const data = computed(() => {
       <div>Skeleton loader</div>
     </template>
     <template #content>
-      <div class="container mx-auto py-10">
-        <article class="flex gap-10 items-center">
-          <figure class="mb-2">
-            <NuxtImg class="w-200" :src="data[0].image" />
-          </figure>
-          <div>
-            <header class="mb-2">
-              <h2 class="font-bold text-lg capitalize text-blue-300">
-                {{ data[0].title }}
-              </h2>
-            </header>
-            <div v-for="metaItem in data[0].metaList" :key="metaItem.name">
-              <p>{{ metaItem.name }}: {{ metaItem.value }}</p>
+      <div class="container mx-auto py-10 px-4">
+        <article>
+          <header class="mb-2">
+            <h2 class="font-bold text-3xl capitalize">
+              {{ data[0].title }}
+            </h2>
+          </header>
+          <div class="md:flex md:gap-10">
+            <figure class="mb-2 w-[300px] shrink-0">
+              <NuxtImg class="w-full" :src="data[0].image" />
+            </figure>
+            <div>
+              <div v-for="metaItem in data[0].metaList" :key="metaItem.name" class="mt-5 last-of-type:mt-0">
+                <h3 class="text-xl">{{ metaItem.name }}</h3>
+                <p class="mt-0">{{ metaItem.value }}</p>
+              </div>
             </div>
           </div>
         </article>

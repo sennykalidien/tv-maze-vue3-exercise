@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import AppConfig from "./appConfig";
+
 useHead({
-  title: "TV MAZE",
+  title: AppConfig.title,
 });
 </script>
 
@@ -21,11 +23,5 @@ useHead({
 </template>
 
 <style>
-html,
-body,
-#__nuxt {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
+@import "./main.scss";
 </style>

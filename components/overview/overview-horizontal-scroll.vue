@@ -13,25 +13,38 @@ defineProps<Props>();
 </script>
 
 <template>
-  <ul class="flex gap-10 overflow-x-auto py-10">
-    <li v-for="item in items" :key="`tv-show-horizontal-item-${item.id}`" class="basis-200 flex-shrink-0 flex-grow-0">
-      <UCard>
-        <NuxtLink :to="item.url">
-          <article>
-            <figure class="mb-2">
-              <NuxtImg class="image" :src="item.image" />
-            </figure>
-            <header class="mb-2">
-              <h2 class="font-bold text-lg capitalize text-blue-300">
-                {{ item.title }}
-              </h2>
-            </header>
-            <div v-for="metaItem in item.metaList" :key="metaItem.name">
-              <p>{{ metaItem.name }}: {{ metaItem.value }}</p>
-            </div>
-          </article>
-        </NuxtLink>
-      </UCard>
+  <ul class="flex gap-1 overflow-x-auto py-3">
+    <li v-for="item in items" :key="`tv-show-horizontal-item-${item.id}`" class="flex-shrink-0 flex-grow-0 w-32">
+      <NuxtLink :to="item.url">
+        <article>
+          <figure>
+            <NuxtImg class="w-full" :src="item.image" />
+          </figure>
+        </article>
+      </NuxtLink>
     </li>
   </ul>
 </template>
+
+<style lang="scss" scoped>
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 2rem;
+  background: #1e1e1e;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+</style>

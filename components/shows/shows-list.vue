@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { sortByRating } from "~/utils/data";
-import { mutateData } from "~/utils";
+import { mutateShowToData, sortDataByRating } from "~/utils";
 import type { Show } from "~/types/shows";
 
 const { data: apiData, pending, error } = await useTvmazeData<Show[] | null>("/shows");
@@ -8,7 +7,7 @@ const { data: apiData, pending, error } = await useTvmazeData<Show[] | null>("/s
 const data = computed(() => {
   if (!apiData.value) return [];
 
-  return sortByRating(mutateData(apiData.value));
+  return sortDataByRating(mutateShowToData(apiData.value));
 });
 </script>
 

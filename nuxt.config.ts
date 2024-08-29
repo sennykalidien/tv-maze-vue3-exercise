@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
 
-  modules: ["@nuxt/ui", "nuxt-api-party", "@nuxt/eslint", "@nuxt/image"],
+  modules: ["@nuxt/ui", "nuxt-api-party", "@nuxt/eslint", "@nuxt/image", "@nuxtjs/tailwindcss", "@nuxtjs/color-mode"],
 
   apiParty: {
     endpoints: {

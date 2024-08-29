@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-import { categorizeByGenre, sortByRating } from "~/utils/data";
-import { mutateData } from "~/utils";
-import type { Show } from "~/types/shows";
+import { categorizeDataByGenre, sortDataByRating, mutateShowToData } from "~/utils";
+import type { Show } from "~/types";
 
 const { data: apiData, pending, error } = await useTvmazeData<Show[] | null>("/shows");
 
 const data = computed(() => {
   if (!apiData.value) return [];
 
-  return categorizeByGenre(sortByRating(mutateData(apiData.value)));
+  return categorizeDataByGenre(sortDataByRating(mutateShowToData(apiData.value)));
 });
 </script>
 
@@ -21,12 +20,12 @@ const data = computed(() => {
       <div>Skeleton loader</div>
     </template>
     <template #content>
-      <div class="container mx-auto">
+      <div class="mx-auto">
         <template v-if="data.length > 0">
-          <section v-for="(category, index) in data" :key="`tv-show-category-${index}`" class="py-10">
+          <section v-for="(category, index) in data" :key="`tv-show-category-${index}`" class="py-5">
             <template v-for="(value, key) in category" :key="`tv-show-category-name-${key}`">
-              <header class="text-center mb-10">
-                <h2 class="font-bold text-lg capitalize text-primary">{{ key }}</h2>
+              <header class="text-center">
+                <h2 class="font-bold text-2xl capitalize">{{ key }}</h2>
               </header>
               <OverviewHorizontalScroll :items="value" />
             </template>

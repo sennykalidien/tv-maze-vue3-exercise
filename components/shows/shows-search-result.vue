@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { sortByRating } from "~/utils/data";
-import { mutateData } from "~/utils";
-import type { ShowSearch } from "~/types/shows";
+import { sortDataByRating, mutateShowToData } from "~/utils";
+import type { SearchedShow } from "~/types";
 
 interface Props {
   searchQuery: string;
@@ -9,19 +8,17 @@ interface Props {
 
 const props = defineProps<Props>();
 
-console.log(props.searchQuery);
-
 const {
   data: apiData,
   pending,
   error,
-} = await useTvmazeData<ShowSearch[] | null>(`/search/shows?q=${props.searchQuery}`);
+} = await useTvmazeData<SearchedShow[] | null>(`/search/shows?q=${props.searchQuery}`);
 
 const data = computed(() => {
   if (!apiData.value) return [];
   const shows = apiData.value.map((show) => show.show);
 
-  return sortByRating(mutateData(shows));
+  return sortDataByRating(mutateShowToData(shows));
 });
 </script>
 
