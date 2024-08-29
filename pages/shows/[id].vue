@@ -6,7 +6,7 @@ const id = ref(route.params.id) as unknown as string;
 <template>
   <LayoutPage>
     <template #page-header>
-      <h1>TV Shows</h1>
+      <h1>TV Show</h1>
     </template>
 
     <ShowDetail :show-id="id" />
