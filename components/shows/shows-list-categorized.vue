@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { categorizeDataByGenre, sortDataByRating, mutateShowToData } from "~/utils";
+import LoadingHorizontal from "~/components/shows/_internal/loading-horizontal.vue";
 import type { Show } from "~/types";
 
 const { data: apiData, pending, error } = await useTvmazeData<Show[] | null>("/shows");
@@ -12,15 +13,17 @@ const data = computed(() => {
 </script>
 
 <template>
-  <content-loader :data="data" :error="error" :loading="pending">
-    <template #errorContent>
-      <p>An error has occurred</p>
-    </template>
-    <template #loadingContent>
-      <div>Skeleton loader</div>
-    </template>
-    <template #content>
-      <div class="mx-auto">
+  <div class="mx-auto px-4">
+    <content-loader :data="data" :error="error" :loading="pending">
+      <template #loadingContent>
+        <div class="container mx-auto">
+          <LoadingHorizontal />
+          <LoadingHorizontal />
+          <LoadingHorizontal />
+          <LoadingHorizontal />
+        </div>
+      </template>
+
         <template v-if="data.length > 0">
           <section v-for="(category, index) in data" :key="`tv-show-category-${index}`" class="py-5">
             <template v-for="(value, key) in category" :key="`tv-show-category-name-${key}`">
@@ -31,7 +34,6 @@ const data = computed(() => {
             </template>
           </section>
         </template>
-      </div>
-    </template>
-  </content-loader>
+    </content-loader>
+  </div>
 </template>

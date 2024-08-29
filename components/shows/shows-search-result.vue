@@ -24,14 +24,6 @@ const data = computed(() => {
 
 <template>
   <content-loader :data="data" :error="error" :loading="pending">
-    <template #errorContent>
-      <p>An error has occurred</p>
-    </template>
-    <template #loadingContent>
-      <div>Skeleton loader</div>
-    </template>
-    <template #content>
-      <Overview :items="data" />
-    </template>
+    <Overview :items="data" />
   </content-loader>
 </template>

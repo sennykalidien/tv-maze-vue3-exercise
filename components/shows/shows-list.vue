@@ -13,16 +13,8 @@ const data = computed(() => {
 
 <template>
   <content-loader :data="data" :error="error" :loading="pending">
-    <template #errorContent>
-      <p>An error has occurred</p>
-    </template>
-    <template #loadingContent>
-      <div>Skeleton loader</div>
-    </template>
-    <template #content>
-      <div class="container mx-auto">
-        <Overview :items="data" />
-      </div>
-    </template>
+    <div class="container mx-auto">
+      <Overview :items="data" />
+    </div>
   </content-loader>
 </template>

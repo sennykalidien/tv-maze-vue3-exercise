@@ -80,7 +80,8 @@ For example:
 ### Extras
 - [x] Dark mode switcher
 - [x] Switch between GRID or LIST view on the `/shows` and `/search` page.
-- [ ] Add a loading spinner or skeleton when fetching data
+- [x] Add a loading spinner or skeleton when fetching data on Home
+- [ ] Add a loading spinner or skeleton when fetching data on other pages
 - [ ] Paged TV Shows & Search Results (using `@tanstack/vue-query`)
 - [x] Componentize the `<Overview />` further into child components (and make use of useOverviewLayout() in child components to get the state)
 - [ ] Add more unit tests, also for components

@@ -19,18 +19,8 @@ const data = computed(() => {
 
 <template>
   <content-loader :data="data" :error="error" :loading="pending">
-    <template #errorContent>
-      <p>An error has occurred</p>
-    </template>
-    <template #loadingContent>
-      <div>Skeleton loader</div>
-    </template>
-    <template #content>
-      <div class="container mx-auto py-10 px-4">
-        <article>
-          <OverviewItemDetail :item="data[0]" />
-        </article>
-      </div>
-    </template>
+    <section class="container mx-auto py-10 px-4">
+      <OverviewItemDetail :item="data[0]" />
+    </section>
   </content-loader>
 </template>
