@@ -60,10 +60,11 @@ The data didn't need to be transformed and logic didn't need to be abstracted.
 The decision behind this is that I want to display my thinking process and how I would approach a project the best. i.e. by thinking more abstract and future proof. 
 
 For example: 
-- What if we want to use different apis to get shows or additional information about a show?
-- What if we want to show more than just shows?
-- What if we want to display the shows in a different way?
-- What if we want to categorize the shows differently?
+- Use different apis to get shows or additional information about a show
+- Display movies fetched from a different API
+- What if we want to standardise the data further
+- Seperate the data from the view logic
+- Business logic from the view logic
 
 ### TO DO
 - [x] Create a Vue / Nuxt 3 project
@@ -75,7 +76,8 @@ For example:
 - [x] Responsive & Fine tune Design
 - [x] Create unit tests
   - [x] Data utils
-  - [ ] Typechecks
+  - [ ] Components
+  - [ ] Composables
 
 ### Extras
 - [x] Dark mode switcher
@@ -83,8 +85,7 @@ For example:
 - [x] Add a loading spinner or skeleton when fetching data on Home
 - [ ] Add a loading spinner or skeleton when fetching data on other pages
 - [ ] Paged TV Shows & Search Results (using `@tanstack/vue-query`)
-- [x] Componentize the `<Overview />` further into child components (and make use of useOverviewLayout() in child components to get the state)
-- [ ] Add more unit tests, also for components
+- [x] Componentize the `<Overview />` further into child component
 - [ ] e2e tests using Playwright
 
 ----
