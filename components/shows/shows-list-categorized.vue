@@ -18,14 +18,14 @@ const { data, loading, error} = useShowsList({ categorized: true });
       </template>
 
         <template v-if="data.length > 0">
-          <section v-for="(category, index) in data" :key="`tv-show-category-${index}`" class="py-5">
-            <template v-for="(value, key) in category" :key="`tv-show-category-name-${key}`">
+          <template v-for="(category, index) in data" :key="`tv-show-category-${index}`">
+            <section v-for="(items, categoryName) in category" :key="`tv-show-category-name-${categoryName}`" class="py-5">
               <header class="text-center">
-                <h2 class="font-bold text-2xl capitalize">{{ key }}</h2>
+                <h2 class="font-bold text-2xl capitalize">{{ categoryName }}</h2>
               </header>
-              <overview-horizontal-scroll :items="value" />
-            </template>
-          </section>
+              <overview-horizontal-scroll :items="items" />
+            </section>
+          </template>
         </template>
     </content-loader>
   </div>

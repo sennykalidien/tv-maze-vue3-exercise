@@ -16,8 +16,8 @@ const { overviewLayout, switchLayout } = useOverviewLayoutSwitcher();
 
 const classes = computed(() => {
   return {
-    list: overviewLayout.value === OverviewLayout.Grid ? "flex gap-8 flex-wrap justify-between" : "",
-    item: overviewLayout.value === OverviewLayout.Grid ? "w-[30ch]" : "w-full mb-5 last-of-type:mb-0",
+    list: overviewLayout.value === OverviewLayout.Grid ? "flex gap-2 flex-wrap justify-between" : "",
+    item: overviewLayout.value === OverviewLayout.Grid ? "w-[28ch]" : "w-full mb-5 last-of-type:mb-0",
   };
 });
 </script>
