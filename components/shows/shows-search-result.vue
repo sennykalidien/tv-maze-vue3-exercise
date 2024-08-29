@@ -1,29 +1,16 @@
 <script lang="ts" setup>
-import { sortDataByRating, mutateShowToData } from "~/utils";
-import type { SearchedShow } from "~/types";
+import { useShowsSearchList } from "~/composables";
 
 interface Props {
   searchQuery: string;
 }
 
 const props = defineProps<Props>();
-
-const {
-  data: apiData,
-  pending,
-  error,
-} = await useTvmazeData<SearchedShow[] | null>(`/search/shows?q=${props.searchQuery}`);
-
-const data = computed(() => {
-  if (!apiData.value) return [];
-  const shows = apiData.value.map((show) => show.show);
-
-  return sortDataByRating(mutateShowToData(shows));
-});
+const { data, loading, error } = useShowsSearchList({ searchQuery: props.searchQuery})
 </script>
 
 <template>
-  <content-loader :data="data" :error="error" :loading="pending">
-    <Overview :items="data" />
+  <content-loader :data="data" :error="error" :loading="loading">
+    <overview :items="data" />
   </content-loader>
 </template>

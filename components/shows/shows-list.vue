@@ -1,20 +1,13 @@
 <script lang="ts" setup>
-import { mutateShowToData, sortDataByRating } from "~/utils";
-import type { Show } from "~/types/shows";
+import { useShowsList } from "~/composables/useShowsList";
 
-const { data: apiData, pending, error } = await useTvmazeData<Show[] | null>("/shows");
-
-const data = computed(() => {
-  if (!apiData.value) return [];
-
-  return sortDataByRating(mutateShowToData(apiData.value));
-});
+const { data, loading, error} = useShowsList({ categorized: false });
 </script>
 
 <template>
-  <content-loader :data="data" :error="error" :loading="pending">
+  <content-loader :data="data" :error="error" :loading="loading">
     <div class="container mx-auto">
-      <Overview :items="data" />
+      <overview :items="data" />
     </div>
   </content-loader>
 </template>

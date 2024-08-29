@@ -1,24 +1,16 @@
 <script lang="ts" setup>
-import { sortDataByRating, mutateShowToData } from "~/utils";
-import type { Show } from "~/types";
+import { useShowDetail } from "~/composables";
 
 interface Props {
   showId: string;
 }
 
 const props = defineProps<Props>();
-
-const { data: apiData, pending, error } = await useTvmazeData<Show | null>(`/shows/${props.showId}`);
-
-const data = computed(() => {
-  if (!apiData.value) return [];
-
-  return sortDataByRating(mutateShowToData([{ ...apiData.value }]));
-});
+const { data, loading, error } = useShowDetail({ showId: props.showId });
 </script>
 
 <template>
-  <content-loader :data="data" :error="error" :loading="pending">
+  <content-loader :data="data" :error="error" :loading="loading">
     <section class="container mx-auto py-10 px-4">
       <OverviewItemDetail :item="data[0]" />
     </section>
