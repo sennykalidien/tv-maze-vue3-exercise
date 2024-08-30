@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+/**
+ * Shows list component
+ * consumes the useShowsCategorizedList composable
+ * and renders the overview-horizontal-scroll component
+ * @prop {Array} data - list of shows
+ */
 import LoadingRow from "~/components/shows/_internal/loading-row.vue";
 import { useShowsCategorizedList } from "~/composables/useShowsList";
 

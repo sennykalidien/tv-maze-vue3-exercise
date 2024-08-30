@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 /**
  * Overview Component
+ * Overview Layout Switcher
+ * Overview Grid <-> Overview List
  * @prop: items
  */
 import { type OverviewItem, OverviewLayout } from "~/types";

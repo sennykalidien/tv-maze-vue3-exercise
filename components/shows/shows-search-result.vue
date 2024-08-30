@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+/**
+ * Shows list component
+ * consumes the useShowsSearchedList composable
+ * and renders the overview component
+ * @prop {String} searchQuery - search query
+ */
 import { useShowsSearchedList } from "~/composables";
 
 interface Props {

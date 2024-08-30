@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+/**
+ * Overview Grid Component
+ * child: OverviewItemVertical
+ * @prop: items
+ */
 import type { OverviewItem } from "~/types/index.js";
 
 interface Props {

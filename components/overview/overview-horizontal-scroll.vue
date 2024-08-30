@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 /**
- * Overview Component
+ * Overview Horizontal Scroll
+ * Scrollable Horizontal Overview Of Items
  * @prop: items
  */
 import type { OverviewItem } from "~/types";

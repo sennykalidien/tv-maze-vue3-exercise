@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+/**
+ * ShowDetail component
+ * Consumes the useShowDetail composable
+ * Renders the OverviewItemDetail component
+ * @prop showId - The show id
+ */
 import { useShowDetail } from "~/composables";
 
 interface Props {

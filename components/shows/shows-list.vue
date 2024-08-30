@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+/**
+ * Shows list component
+ * consumes the useShowsList composable
+ * and renders the overview component
+ * @prop {Array} data - list of shows
+ */
 import { useShowsList } from "~/composables/useShowsList";
 
 const { data, loading, error} = useShowsList();

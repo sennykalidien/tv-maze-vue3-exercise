@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+/**
+ * Overview List Component
+ * child: OverviewItemHorizontal
+ * @prop: items
+ */
 import type { OverviewItem } from "~/types/index.js";
 
 interface Props {
