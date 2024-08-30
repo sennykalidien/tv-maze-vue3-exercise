@@ -10,7 +10,7 @@ defineProps<Props>();
 
 <template>
   <ul>
-    <li v-for="item in items" :key="`overview-item${item.id}`" class="w-full mb-5 last-of-type:mb-0">
+    <li v-for="item in items" :key="`overview-list-item${item.id}`" class="w-full mb-5 last-of-type:mb-0">
       <NuxtLink :to="item.url" class="h-full">
         <UCard class="h-full">
           <article>
