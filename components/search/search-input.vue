@@ -1,13 +1,13 @@
 <script lang="ts" setup>
+interface Props {
+  placeholder: string
+}
+
+withDefaults(defineProps<Props>(), {
+  placeholder: "Search",
+})
+
 async function handleSearch(event: Event) {
-  interface Props {
-    placeholder: string
-  }
-
-  withDefaults(defineProps<Props>(), {
-    placeholder: "Search",
-  });
-
   const queryValue = (event.currentTarget as HTMLInputElement).value;
   const urlParams = new URLSearchParams(`q=${queryValue}`);
 
