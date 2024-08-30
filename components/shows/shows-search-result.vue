@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { useShowsSearchList } from "~/composables";
+import { useShowsSearchedList } from "~/composables";
 
 interface Props {
   searchQuery: string;
 }
 
 const props = defineProps<Props>();
-const { data, loading, error } = useShowsSearchList({ searchQuery: props.searchQuery})
+const { data, loading, error } = useShowsSearchedList({ searchQuery: props.searchQuery})
 </script>
 
 <template>

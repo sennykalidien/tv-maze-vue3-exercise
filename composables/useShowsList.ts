@@ -1,30 +1,39 @@
-import { useInfiniteQuery } from "@tanstack/vue-query";
-import { categorizeDataByGenre, mutateShowToData, sortDataByRating } from "~/utils";
+import {useInfiniteQuery} from "@tanstack/vue-query";
+import {categorizeDataByGenre, mutateShowToData, sortDataByRating} from "~/utils";
 import type {Data, DataCategorized, SearchedShow, Show} from "~/types";
-import type { NuxtError } from "#app";
+import type {NuxtError} from "#app";
 
-interface ShowsList {
-  data: ComputedRef<Data | DataCategorized>;
+interface ShowsList<TData> {
+  data: Ref<TData>;
   loading: Ref<boolean>;
   error: Ref<NuxtError | Error | null>;
 }
 
-const itemsPerPage = 250;
+/**
+ * Give an accurate loading state after the data has been transformed
+ * @param data
+ * @param pending
+ */
+function _getLoading<TData>(data: Ref<TData[]>, pending: Ref<boolean>) {
+  return computed(() => {
+    if (data.value.length > 0 && !pending.value) {
+      return pending.value
+    }
 
-export function useShowsList({ categorized }: { categorized?: boolean }): ShowsList {
-  const { data: apiData, pending: loading, error } = useTvmazeData<Show[] | null>("/shows");
+    return true
+  })
+}
+
+export function useShowsList(): ShowsList<Data> {
+  const { data: apiData, pending, error } = useTvmazeData<Show[] | null>("/shows");
 
   const data = computed(() => {
     if (!apiData.value) return [];
 
-    const data =  sortDataByRating(mutateShowToData(apiData.value));
-
-    if(categorized) {
-      return categorizeDataByGenre(data)
-    }
-
-    return data
+    return sortDataByRating(mutateShowToData(apiData.value));
   });
+
+  const loading = _getLoading(data, pending)
 
   return {
     data,
@@ -33,10 +42,28 @@ export function useShowsList({ categorized }: { categorized?: boolean }): ShowsL
   }
 }
 
-export function useShowsSearchList({ searchQuery }: { searchQuery: string }): ShowsList {
+export function useShowsCategorizedList(): ShowsList<DataCategorized> {
+  const { data: apiData, pending, error } = useTvmazeData<Show[] | null>("/shows");
+
+  const data = computed(() => {
+    if (!apiData.value) return [];
+
+    return categorizeDataByGenre(sortDataByRating(mutateShowToData(apiData.value)))
+  });
+
+  const loading = _getLoading(data, pending)
+
+  return {
+    data,
+    loading,
+    error
+  }
+}
+
+export function useShowsSearchedList({ searchQuery }: { searchQuery: string }): ShowsList<Data> {
   const {
     data: apiData,
-    pending: loading,
+    pending,
     error,
   } = useTvmazeData<SearchedShow[] | null>(`/search/shows?q=${searchQuery}`);
 
@@ -46,6 +73,8 @@ export function useShowsSearchList({ searchQuery }: { searchQuery: string }): Sh
 
     return sortDataByRating(mutateShowToData(shows));
   });
+
+  const loading = _getLoading(data, pending)
 
   return {
     data,
@@ -66,7 +95,7 @@ export function usePagedShowsList() {
     queryKey: ["tv-shows", "tv-shows-list"],
     queryFn: () => $tvmaze<Show[]>(`shows`),
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      if (lastPage.length < itemsPerPage) {
+      if (lastPage.length < 250) {
         return undefined;
       }
 

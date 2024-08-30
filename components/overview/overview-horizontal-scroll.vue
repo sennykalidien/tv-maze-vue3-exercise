@@ -40,7 +40,7 @@ defineProps<Props>();
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 2rem;
-  background: #1e1e1e;
+  background: #2e2e2e;
 }
 
 /* Handle on hover */
