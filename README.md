@@ -75,7 +75,7 @@ For example:
 - [x] Sort TV Shows by rating
 - [x] Responsive & Fine tune Design
 - [x] Create unit tests
-  - [x] Data utils
+  - [x] Utils
   - [ ] Components
   - [ ] Composables
 
