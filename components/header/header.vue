@@ -9,9 +9,9 @@ const colorMode = useColorMode();
         <NuxtImg src="/logo.png" alt="Logo" class="h-10" />
       </NuxtLink>
     </div>
-    <SearchInput />
+    <SearchInput placeholder="Search TV Shows" />
     <div class="flex items-center gap-5">
-      <NuxtLink to="shows" class="shrink-0">All shows</NuxtLink>
+      <NuxtLink to="/shows" class="shrink-0">All shows</NuxtLink>
       <div>
         <select
           v-model="colorMode.preference"
