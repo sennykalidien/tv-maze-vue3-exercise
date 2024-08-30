@@ -1,7 +1,8 @@
 import {useInfiniteQuery} from "@tanstack/vue-query";
-import {categorizeDataByGenre, mutateShowToData, sortDataByRating} from "~/utils";
+import {categorizeDataByGenre, mutateShowsToData, sortDataByRating} from "~/utils";
 import type {Data, DataCategorized, SearchedShow, Show} from "~/types";
 import type {NuxtError} from "#app";
+import {getLoading} from "./shared";
 
 interface ShowsList<TData> {
   data: Ref<TData>;
@@ -9,31 +10,16 @@ interface ShowsList<TData> {
   error: Ref<NuxtError | Error | null>;
 }
 
-/**
- * Give an accurate loading state after the data has been transformed
- * @param data
- * @param pending
- */
-function _getLoading<TData>(data: Ref<TData[]>, pending: Ref<boolean>) {
-  return computed(() => {
-    if (data.value.length > 0 && !pending.value) {
-      return pending.value
-    }
-
-    return true
-  })
-}
-
-export function useShowsList(): ShowsList<Data> {
-  const { data: apiData, pending, error } = useTvmazeData<Show[] | null>("/shows");
+export function useShowsList(): ShowsList<Data[]> {
+  const {data: apiData, pending, error} = useTvmazeData<Show[] | null>("/shows");
 
   const data = computed(() => {
     if (!apiData.value) return [];
 
-    return sortDataByRating(mutateShowToData(apiData.value));
+    return sortDataByRating(mutateShowsToData(apiData.value));
   });
 
-  const loading = _getLoading(data, pending)
+  const loading = getLoading(data, pending)
 
   return {
     data,
@@ -42,16 +28,16 @@ export function useShowsList(): ShowsList<Data> {
   }
 }
 
-export function useShowsCategorizedList(): ShowsList<DataCategorized> {
-  const { data: apiData, pending, error } = useTvmazeData<Show[] | null>("/shows");
+export function useShowsCategorizedList(): ShowsList<DataCategorized[]> {
+  const {data: apiData, pending, error} = useTvmazeData<Show[] | null>("/shows");
 
   const data = computed(() => {
     if (!apiData.value) return [];
 
-    return categorizeDataByGenre(sortDataByRating(mutateShowToData(apiData.value)))
+    return categorizeDataByGenre(sortDataByRating(mutateShowsToData(apiData.value)))
   });
 
-  const loading = _getLoading(data, pending)
+  const loading = getLoading(data, pending)
 
   return {
     data,
@@ -60,7 +46,7 @@ export function useShowsCategorizedList(): ShowsList<DataCategorized> {
   }
 }
 
-export function useShowsSearchedList({ searchQuery }: { searchQuery: string }): ShowsList<Data> {
+export function useShowsSearchedList({searchQuery}: { searchQuery: string }): ShowsList<Data[]> {
   const {
     data: apiData,
     pending,
@@ -71,10 +57,10 @@ export function useShowsSearchedList({ searchQuery }: { searchQuery: string }): 
     if (!apiData.value) return [];
     const shows = apiData.value.map((show) => show.show);
 
-    return sortDataByRating(mutateShowToData(shows));
+    return sortDataByRating(mutateShowsToData(shows));
   });
 
-  const loading = _getLoading(data, pending)
+  const loading = getLoading(data, pending)
 
   return {
     data,

@@ -12,7 +12,7 @@ const { data, loading, error } = useShowDetail({ showId: props.showId });
 <template>
   <content-loader :data="data" :error="error" :loading="loading">
     <section class="container mx-auto py-10 px-4">
-      <OverviewItemDetail :item="data[0]" />
+      <OverviewItemDetail v-if="data" :item="data" />
     </section>
   </content-loader>
 </template>

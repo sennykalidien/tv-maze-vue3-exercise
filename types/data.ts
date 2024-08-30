@@ -1,10 +1,8 @@
-export type DataCategorized = {
-  [key: string]: Data;
-}[];
+export interface DataCategorized {
+  [key: string]: Data[];
+}
 
-export type Data = DataItem[];
-
-export interface DataItem {
+export interface Data {
   id: number;
   title: string;
   url: string;

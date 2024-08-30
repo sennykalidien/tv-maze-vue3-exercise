@@ -1,21 +1,24 @@
 import type { NuxtError } from "#app";
-import type {Data, Show} from "~/types";
+import type { Data, Show } from "~/types";
 import { mutateShowToData, sortDataByRating } from "~/utils";
+import {getLoading} from "./shared";
 
-interface ShowDetail {
-  data: ComputedRef<Data>;
+interface ShowDetail<TData> {
+  data: Ref<TData | null>;
   loading: Ref<boolean>;
   error: Ref<NuxtError | Error | null>;
 }
 
-export function useShowDetail({ showId }: { showId: string }): ShowDetail {
-  const { data: apiData, pending: loading, error } = useTvmazeData<Show | null>(`/shows/${showId}`);
+export function useShowDetail({ showId }: { showId: string }): ShowDetail<Data> {
+  const { data: apiData, pending, error } = useTvmazeData<Show | null>(`/shows/${showId}`);
 
   const data = computed(() => {
-    if (!apiData.value) return [];
+    if (!apiData.value) return null;
 
-    return sortDataByRating(mutateShowToData([{ ...apiData.value }]));
+    return mutateShowToData(apiData.value);
   });
+
+  const loading = getLoading(data, pending)
 
   return {
     data,

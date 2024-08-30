@@ -5,7 +5,7 @@ import type { Data, DataCategorized } from "~/types";
  * @param data Data
  * @returns Data
  */
-export const sortDataByRating = (data: Data): Data => {
+export const sortDataByRating = (data: Data[]): Data[] => {
   return data.sort((a, b) => {
     const ratingA = a.metaList.find((meta) => meta.name === "Rating")?.value;
     const ratingB = b.metaList.find((meta) => meta.name === "Rating")?.value;
@@ -20,8 +20,8 @@ export const sortDataByRating = (data: Data): Data => {
  * Categorize data by key
  * @param data
  */
-export const categorizeDataByGenre = (data: Data): DataCategorized => {
-  const categorizedOverview: { [key: string]: Data } = {};
+export const categorizeDataByGenre = (data: Data[]): DataCategorized[] => {
+  const categorizedOverview: { [key: string]: Data[] } = {};
 
   data.forEach((item) => {
     const genres = item.metaList.find((meta) => meta.name === "Genres")?.value;
