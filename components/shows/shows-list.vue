@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useShowsList } from "~/composables/useShowsList";
 
-const { data, loading, error} = useShowsList({ categorized: false });
+const { data, loading, error} = useShowsList();
 </script>
 
 <template>
