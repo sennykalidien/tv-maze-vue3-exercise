@@ -1,5 +1,13 @@
 <script lang="ts" setup>
 async function handleSearch(event: Event) {
+  interface Props {
+    placeholder: string
+  }
+
+  withDefaults(defineProps<Props>(), {
+    placeholder: "Search",
+  });
+
   const queryValue = (event.currentTarget as HTMLInputElement).value;
   const urlParams = new URLSearchParams(`q=${queryValue}`);
 
@@ -10,5 +18,5 @@ async function handleSearch(event: Event) {
 </script>
 
 <template>
-  <UInput type="search" placeholder="Search TV Shows" class="w-full" @keyup.enter="handleSearch" />
+  <UInput type="search" :placeholder="placeholder" class="w-full" @keyup.enter="handleSearch" />
 </template>
