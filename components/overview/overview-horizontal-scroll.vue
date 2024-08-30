@@ -16,7 +16,7 @@ defineProps<Props>();
   <ul class="flex gap-1 overflow-x-auto py-3">
     <li v-for="item in items" :key="`overview-horizontal-item-${item.id}`" class="flex-shrink-0 flex-grow-0 w-32">
       <NuxtLink :to="item.url">
-        <article>
+        <article class="transition ease-in-out hover:scale-110">
           <figure>
             <NuxtImg class="w-full" :src="item.image" />
           </figure>
