@@ -14,17 +14,17 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
 - Client Side Rendered App
 
 ### Technology Stack
-- Vue 3
-- Nuxt
-- Tailwind CSS
-- Vitest
+- Vue 3 - Framework
+- Nuxt - Rendering and routing
+- Tailwind CSS - for rapid fast css styling
+- Vitest - for writing unit tests
 
 ### Dependencies
 - Nuxt
-  - Icon
-  - UI
-  - Image
-  - Eslint
+  - Icon - Easy add icons
+  - UI - Easy add UI components
+  - Image - Responsive image handeling
+  - Eslint - Linting code quality
 - API
   - Nuxt API Party - easily setup REST endpoints globally and do calls
   - Tanstack - Easily make **paged** REST calls
@@ -32,17 +32,18 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
 ## Features & Functionality
 
 ### Features
-- View TV shows categorized and sorted by highest rating first
-- View overview of all TV show in a grid or list
-- Search for TV shows
-- View TV show details
+- First view of TV Shows on Home which are categorized and sorted by highest rating first
+- View overview of all TV Show in a grid or list
+- Search for TV Shows
+- View TV Show details
 
 ## Future Improvement
 - Add more unit tests
-- Fine tune design
+- Fine-tune design
 - Use more of Vue, like:
   - Provide / Inject
-  - Create more Composables using the Composition API
+  - Reactive
+  - State Management with Pinia
 
 ## Approach
 - All contextual logic (TV Shows) is scoped and handled in components located in `/components/shows` & `/components/show`. 
@@ -55,7 +56,7 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
 ### Abstraction & separation of concerns
 **This is over-engineerd for what it needs to do.**
 
-The data didn't need to be transformed and logic didn't need to be abstracted. 
+The data didn't need to be transformed and a lot of logic didn't need to be abstracted. 
 
 The decision behind this is that I want to display my thinking process and how I would approach a project the best. i.e. by thinking more abstract and future proof. 
 
@@ -65,6 +66,11 @@ For example:
 - What if we want to standardise the data further
 - Seperate the data from the view logic
 - Business logic from the view logic
+- Handle things outside of components
+  - component only focus on the presentation as much as possible
+  - outside of component we determine the HTML5 elements
+  - outside of the components we tell what the margins and spacings are
+
 
 ### TO DO
 - [x] Create a Vue / Nuxt 3 project
