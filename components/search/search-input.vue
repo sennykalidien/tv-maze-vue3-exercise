@@ -1,11 +1,16 @@
 <script lang="ts" setup>
 interface Props {
   placeholder: string
+  defaultValue: string
 }
 
 withDefaults(defineProps<Props>(), {
   placeholder: "Search",
+  defaultValue: "",
 })
+
+const route = useRoute();
+const searchQuery = route.query.q as string;
 
 async function handleSearch(event: Event) {
   const queryValue = (event.currentTarget as HTMLInputElement).value;
@@ -18,5 +23,5 @@ async function handleSearch(event: Event) {
 </script>
 
 <template>
-  <UInput type="search" :placeholder="placeholder" class="w-full" @keyup.enter="handleSearch" />
+  <UInput type="search" :placeholder="placeholder" class="w-full" :model-value="searchQuery" @keyup.enter="handleSearch" />
 </template>

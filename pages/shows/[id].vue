@@ -6,9 +6,13 @@ const id = ref(route.params.id) as unknown as string;
 <template>
   <LayoutPage>
     <template #page-header>
-      <h1>TV Show</h1>
+      <PageHeader>
+        <h1>TV Show</h1>
+      </PageHeader>
     </template>
 
-    <ShowDetail :show-id="id" />
+    <Container class="my-10">
+      <ShowDetail :show-id="id" />
+    </Container>
   </LayoutPage>
 </template>

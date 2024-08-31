@@ -11,7 +11,7 @@ defineProps<Props>()
 
 <template>
   <article>
-    <header class="mb-2">
+    <header class="mb-8">
       <h2 class="font-bold text-3xl capitalize">
         {{ item.title }}
       </h2>

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <header v-if="$slots['page-header']" class="bg-primary text-center py-10">
+    <header v-if="$slots['page-header']">
       <slot name="page-header" />
     </header>
     <div v-if="$slots.default">
@@ -11,4 +11,3 @@
     </footer>
   </section>
 </template>
-

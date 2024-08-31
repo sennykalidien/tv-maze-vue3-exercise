@@ -24,10 +24,12 @@ withDefaults(defineProps<Props>(), {
 
   <!-- error -->
   <template v-else-if="error">
-    <template v-if="$slots.loadingContent">
+    <template v-if="$slots.errorContent">
     <slot name="errorContent" />
     </template>
-    <template v-else> An error has occurred while fetching data... </template>
+    <template v-else>
+      An error has occurred while fetching data...
+    </template>
   </template>
 
   <!-- content -->
@@ -35,5 +37,7 @@ withDefaults(defineProps<Props>(), {
     <slot />
   </template>
 
-  <template v-else> No data has been found </template>
+  <template v-else>
+    No content has been found
+  </template>
 </template>

@@ -12,9 +12,9 @@ useHead({
       <template #base-header>
         <Header />
       </template>
-      <template #base-content>
-        <NuxtPage />
-      </template>
+
+      <NuxtPage />
+
       <template #base-footer>
         <Footer />
       </template>

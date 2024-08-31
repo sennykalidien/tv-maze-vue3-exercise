@@ -12,8 +12,6 @@ const { data, loading, error} = useShowsList();
 
 <template>
   <content-loader :data="data" :error="error" :loading="loading">
-    <div class="container mx-auto">
       <overview :items="data" />
-    </div>
   </content-loader>
 </template>

@@ -6,10 +6,13 @@ const searchQuery = route.query.q as string;
 <template>
   <LayoutPage>
     <template #page-header>
-      <h1>Search Results</h1>
+      <PageHeader>
+        <h1>Search</h1>
+        <p class="text-lg">Results for "{{ searchQuery }}"</p>
+      </PageHeader>
     </template>
-    <div class="container mx-auto">
+    <Container class="my-10">
       <ShowsSearchResult :search-query="searchQuery" />
-    </div>
+    </Container>
   </LayoutPage>
 </template>

@@ -17,8 +17,6 @@ const { data, loading, error } = useShowDetail({ showId: props.showId });
 
 <template>
   <content-loader :data="data" :error="error" :loading="loading">
-    <section class="container mx-auto py-10 px-4">
-      <OverviewItemDetail v-if="data" :item="data" />
-    </section>
+    <OverviewItemDetail v-if="data" :item="data" />
   </content-loader>
 </template>

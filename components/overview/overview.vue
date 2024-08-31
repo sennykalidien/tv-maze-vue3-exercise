@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 /**
  * Overview Component
- * Overview Layout Switcher
+ * Contains: Overview Layout Switcher & TODO: Pagination
  * Overview Grid <-> Overview List
  * @prop: items
  */
@@ -12,15 +12,17 @@ interface Props {
   items: OverviewItem[];
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+const totalItems = computed(() => props.items.length)
 
 const { overviewLayout, switchLayout } = useOverviewLayoutSwitcher();
+
 </script>
 
 <template>
   <section>
-    <div class="flex justify-between items-center p-5">
-      <h2>Results</h2>
+    <div class="flex justify-between items-center mb-5">
+      <h2 class="text-lg">{{ totalItems }} Results</h2>
       <overview-layout-switcher @change="switchLayout" />
     </div>
 
