@@ -17,27 +17,27 @@ export const sortDataByRating = (data: Data[]): Data[] => {
 };
 
 /**
- * Categorize data by key
+ * Categorize data metalist item value by key
  * @param data
  */
-export const categorizeDataByGenre = (data: Data[]): DataCategorized[] => {
+export const categorizeDataByMetaKey = (data: Data[], key = "Genres"): DataCategorized[] => {
   const categorizedOverview: { [key: string]: Data[] } = {};
 
   data.forEach((item) => {
-    const genres = item.metaList.find((meta) => meta.name === "Genres")?.value;
+    const metaKeyItems = item.metaList.find((meta) => meta.name === key)?.value;
 
-    if (!genres) {
+    if (!metaKeyItems) {
       return;
     }
 
-    genres.split(",").forEach((genre) => {
-      genre = genre.trim();
+    metaKeyItems.split(",").forEach((metaKeyitem) => {
+      metaKeyitem = metaKeyitem.trim();
 
-      if (!categorizedOverview[genre]) {
-        categorizedOverview[genre] = [];
+      if (!categorizedOverview[metaKeyitem]) {
+        categorizedOverview[metaKeyitem] = [];
       }
 
-      categorizedOverview[genre].push(item);
+      categorizedOverview[metaKeyitem].push(item);
     });
   });
 
@@ -45,3 +45,11 @@ export const categorizeDataByGenre = (data: Data[]): DataCategorized[] => {
     [genre]: categorizedOverview[genre],
   }));
 };
+
+/**
+ * Categorize data by genre
+ * @param data
+ */
+export const categorizeDataByGenre = (data: Data[]): DataCategorized[] => {
+  return categorizeDataByMetaKey(data, "Genres");
+}

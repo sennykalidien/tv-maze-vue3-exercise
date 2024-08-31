@@ -7,7 +7,7 @@
     </template>
 
     <Container class="my-10">
-      <ShowsList />
+      <ShowsList :limit="25" />
     </Container>
   </LayoutPage>
 </template>
