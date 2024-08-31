@@ -15,7 +15,7 @@ defineProps<Props>();
 
 <template>
   <ul class="flex gap-10 flex-wrap justify-between">
-    <li v-for="item in items" :key="`overview-grid-item${item.id}`" class="w-[28ch]">
+    <li v-for="item in items" :key="`overview-grid-item${item.id}`" class="w-[15ch]">
       <NuxtLink :to="item.url" class="h-full">
         <UCard class="h-full">
           <article>

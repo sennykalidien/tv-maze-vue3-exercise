@@ -19,9 +19,6 @@ defineProps<Props>()
           {{ item.title }}
         </h2>
       </header>
-      <div v-for="metaItem in item.metaList" :key="metaItem.name">
-        <p class="mb-1">{{ metaItem.name }}: {{ metaItem.value }}</p>
-      </div>
     </div>
   </div>
 </template>

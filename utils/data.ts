@@ -30,13 +30,13 @@ export const categorizeDataByGenre = (data: Data[]): DataCategorized[] => {
       return;
     }
 
-    // Genres from API are separated by commas
     genres.split(",").forEach((genre) => {
       genre = genre.trim();
 
       if (!categorizedOverview[genre]) {
         categorizedOverview[genre] = [];
       }
+
       categorizedOverview[genre].push(item);
     });
   });

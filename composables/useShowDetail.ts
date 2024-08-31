@@ -1,6 +1,6 @@
 import type { NuxtError } from "#app";
 import type { Data, Show } from "~/types";
-import { mutateShowToData, sortDataByRating } from "~/utils";
+import { mutateShowToData } from "~/utils";
 import {getLoading} from "./shared";
 
 interface ShowDetail<TData> {

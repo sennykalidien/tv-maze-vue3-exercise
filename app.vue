@@ -7,6 +7,7 @@ useHead({
 </script>
 
 <template>
+  <NuxtLoadingIndicator />
   <NuxtLayout>
     <LayoutBase>
       <template #base-header>

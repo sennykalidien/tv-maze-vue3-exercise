@@ -1,8 +1,8 @@
-<script setup lang="ts" generic="T extends Record<string, any>">
+<script setup lang="ts" generic="TData extends Record<string, any> | Record<string, any>[]">
 import type { NuxtError } from "#app";
 
 interface Props {
-  data: T | null;
+  data: TData | null;
   loading: boolean;
   error: NuxtError | Error | null | undefined;
 }
@@ -13,6 +13,7 @@ withDefaults(defineProps<Props>(), {
   error: undefined,
 });
 </script>
+
 <template>
   <!-- loading -->
   <template v-if="loading">
@@ -38,6 +39,6 @@ withDefaults(defineProps<Props>(), {
   </template>
 
   <template v-else>
-    No content has been found
+    No data has been found
   </template>
 </template>
