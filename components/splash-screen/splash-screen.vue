@@ -3,7 +3,12 @@
 <template>
   <div class="w-full h-screen fixed dark:bg-black bg-white flex top-0">
     <div class="m-auto">
-      <NuxtImg src="/logo.png" alt="tv-maze-logo-splashscreen" class="h-200 animate-pulse" />
+      <img
+          src="/logo.png"
+          alt="tv-maze-logo-splashscreen"
+          height="80"
+          class="animate-pulse"
+      >
     </div>
   </div>
 </template>

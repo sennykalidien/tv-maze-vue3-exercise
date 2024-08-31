@@ -2,7 +2,7 @@
   <div class="py-6 flex flex-col md:flex-row justify-between items-center gap-5 md:gap-10">
     <div class="shrink-0 text-center">
       <NuxtLink to="/" class="inline-flex">
-        <NuxtImg src="/logo.png" alt="Logo" class="h-10" />
+        <img src="/logo.png" alt="Logo" class="h-10" >
       </NuxtLink>
     </div>
     <Search placeholder="Search TV Shows" />

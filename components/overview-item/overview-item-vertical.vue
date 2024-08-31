@@ -11,7 +11,7 @@ defineProps<Props>()
 <template>
   <div>
     <figure class="mb-2">
-      <NuxtImg class="w-full" :src="item.image" />
+      <NuxtImg class="w-full" :src="item.image" loading="lazy" placeholder />
     </figure>
     <div>
       <header class="flex items-center">

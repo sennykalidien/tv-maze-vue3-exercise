@@ -18,14 +18,14 @@ defineProps<Props>()
     </header>
     <div class="md:flex md:gap-10">
       <figure class="mb-2 w-[300px] shrink-0">
-        <NuxtImg class="w-full" :src="item.image" />
+        <NuxtImg class="w-full" :src="item.image" loading="lazy" placeholder />
       </figure>
-      <div>
-        <div v-for="metaItem in item.metaList" :key="metaItem.name" class="mb-5 last-of-type:mb-0">
+      <ul>
+        <li v-for="metaItem in item.metaList" :key="metaItem.name" class="mb-5 last-of-type:mb-0">
           <h3 class="text-xl">{{ metaItem.name }}</h3>
           <p class="mt-0">{{ metaItem.value }}</p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </article>
 </template>

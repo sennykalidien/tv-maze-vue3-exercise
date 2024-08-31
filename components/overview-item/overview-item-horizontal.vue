@@ -11,7 +11,7 @@ defineProps<Props>();
 <template>
   <div class="flex gap-10 items-center">
     <figure>
-      <NuxtImg class="object-cover h-12 w-12" :src="item.image" />
+      <NuxtImg class="object-cover h-12 w-12" :src="item.image" loading="lazy" />
     </figure>
     <header class="flex items-center">
       <h2 class="text-lg capitalize text-primary">

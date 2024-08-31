@@ -1,12 +1,10 @@
 <script lang="ts" setup>
 interface Props {
   placeholder: string
-  defaultValue: string
 }
 
 withDefaults(defineProps<Props>(), {
   placeholder: "Search",
-  defaultValue: "",
 })
 
 const route = useRoute();
