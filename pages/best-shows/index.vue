@@ -7,7 +7,7 @@
     </template>
 
     <Container class="my-10">
-      <ShowsListPaged />
+      <ShowsList />
     </Container>
   </LayoutPage>
 </template>

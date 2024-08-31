@@ -3,7 +3,7 @@
  * @param data
  * @param pending
  */
-export function getLoading<TData>(data: Ref<TData>, pending: Ref<boolean>) {
+export function getLoadingState<TData>(data: Ref<TData>, pending: Ref<boolean>) {
   return computed(() => {
     if (data.value && !pending.value) {
       return pending.value

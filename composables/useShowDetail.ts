@@ -1,7 +1,7 @@
 import type { NuxtError } from "#app";
 import type { Data, Show } from "~/types";
 import { mutateShowToData } from "~/utils";
-import {getLoading} from "./shared";
+import {getLoadingState} from "./shared";
 
 interface ShowDetail<TData> {
   data: Ref<TData | null>;
@@ -18,7 +18,7 @@ export function useShowDetail({ showId }: { showId: string }): ShowDetail<Data> 
     return mutateShowToData(apiData.value);
   });
 
-  const loading = getLoading(data, pending)
+  const loading = getLoadingState(data, pending)
 
   return {
     data,
