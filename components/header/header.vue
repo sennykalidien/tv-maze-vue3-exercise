@@ -5,7 +5,7 @@
         <NuxtImg src="/logo.png" alt="Logo" class="h-10" />
       </NuxtLink>
     </div>
-    <SearchInput placeholder="Search TV Shows" />
+    <Search placeholder="Search TV Shows" />
     <div class="flex items-center gap-5">
       <NuxtLink to="/shows" class="shrink-0">All shows</NuxtLink>
       <DarkModeSwitcher />
