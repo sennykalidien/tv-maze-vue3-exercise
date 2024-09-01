@@ -2,7 +2,7 @@ import type {NuxtError} from "#app";
 import {useInfiniteQuery} from "@tanstack/vue-query";
 import {categorizeDataByGenre, mutateShowsToData, sortDataByRating} from "~/utils";
 import type {Data, DataCategorized, SearchedShow, Show} from "~/types";
-import {getLoadingState} from "./shared";
+import {useLoadingState} from "./shared";
 
 interface ShowsList<TData> {
   data: Ref<TData>;
@@ -25,7 +25,7 @@ export function useShowsList(): ShowsList<Data[]> {
     return sortDataByRating(mutateShowsToData(apiData.value));
   });
 
-  const loading = getLoadingState(data, pending)
+  const loading = useLoadingState(data, pending)
 
   return {
     data,
@@ -43,7 +43,7 @@ export function useShowsCategorizedList(): ShowsList<DataCategorized[]> {
     return categorizeDataByGenre(sortDataByRating(mutateShowsToData(apiData.value)))
   });
 
-  const loading = getLoadingState(data, pending)
+  const loading = useLoadingState(data, pending)
 
   return {
     data,
@@ -67,7 +67,7 @@ export function useShowsSearchedList({searchQuery}: { searchQuery: string }): Sh
     return sortDataByRating(mutateShowsToData(shows));
   });
 
-  const loading = getLoadingState(data, pending)
+  const loading = useLoadingState(data, pending)
 
   return {
     data,
@@ -111,8 +111,8 @@ export function useShowsListPaged(): ShowsListPaged<Data[]> {
     return sortDataByRating([...oldData, ...newData])
   })
 
-  const loading = getLoadingState(data, pending)
-  const loadingNextPage = getLoadingState(data, isFetchingNextPage)
+  const loading = useLoadingState(data, pending)
+  const loadingNextPage = useLoadingState(data, isFetchingNextPage)
 
   return {
     data,
