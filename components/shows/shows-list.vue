@@ -16,7 +16,7 @@ const dataLimited = computed(() => props.limit && props.limit > 0 && data.value.
 </script>
 
 <template>
-  <content-loader :data="data" :error="error" :loading="loading">
-    <overview :items="dataLimited ? dataLimited : data" />
-  </content-loader>
+  <ContentLoader :data="data" :error="error" :loading="loading">
+    <Overview :items="dataLimited ? dataLimited : data" />
+  </ContentLoader>
 </template>

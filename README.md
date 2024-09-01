@@ -11,11 +11,11 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
 ## Application Overview
 
 ### Type of Application
-- Client Side Rendered App
+- CSR (Client Side Rendering) App
 
 ### Technology Stack
-- Vue 3 - Framework
-- Nuxt - Rendering and routing
+- Vue 3
+- Nuxt - used for paged routing & SSG (Static Site Generation) 
 - Tailwind CSS - for rapid fast css styling
 - Vitest - for writing unit tests
 
@@ -26,8 +26,8 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
   - Image - Responsive image handeling
   - Eslint - Linting code quality
 - API
-  - Nuxt API Party - easily setup REST endpoints globally and do calls
-  - Tanstack - Easily make **paged** REST calls
+  - Nuxt API Party - Generates composables to do cached REST API calls
+  - Tanstack - Easily make **paged** REST API calls
 
 ## Features & Functionality
 
@@ -40,36 +40,36 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
 ## Future Improvement
 - Add more unit tests
 - Fine-tune design
-- Use more of Vue, like:
+- State Management with Pinia for storing favourite shows
+- Use more of Vue / Nuxt, like:
   - Provide / Inject
   - Reactive
-  - State Management with Pinia
+  - LazyComponents
+  
 
 ## Approach
 - All contextual logic (TV Shows) is scoped and handled in components located in `/components/shows` & `/components/show`. 
 - All other components are 'generic' components without contextual knowledge about TV Shows or API structures.
-- Utils in `/utils/data` helps transform the API Data to a generic data format
-- This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres.
-- We use the `<Overview>` component `components/overview/[components] to use this data format to display the shows.
+- Utils in `/utils/data` helps transform the API Data to a generic data format. 
+  - This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres.
+- We use the `<Overview>` component `components/overview/[component].vue to use this data format to display the shows.
 - The Overview component in `/components/overview`  is used to display the transformed data in a grid, list or horizontal scrolling view.
 
+### Showcase of coding principles
+- DRY
+  - <content
 ### Abstraction & separation of concerns
 **This is over-engineerd for what it needs to do.**
 
-The data didn't need to be transformed and a lot of logic didn't need to be abstracted. 
+The data didn't need to be transformed and logic didn't need to be abstracted. 
 
-The decision behind this is that I want to display my thinking process and how I would approach a project the best. i.e. by thinking more abstract and future proof. 
-
-For example: 
+The decision behind this is that I want to display my thinking process and how I would approach a project the best. i.e. by thinking more abstract and future-proof.
 - Use different apis to get shows or additional information about a show
-- Display movies fetched from a different API
-- What if we want to standardise the data further
-- Seperate the data from the view logic
-- Business logic from the view logic
+- Seperate the data from the view (usually done with a dataLayer from a server)
+- Business logic from the view
 - Handle things outside of components
-  - component only focus on the presentation as much as possible
-  - outside of component we determine the HTML5 elements
-  - outside of the components we tell what the margins and spacings are
+  - Component only focus on the presentation as much as possible
+  - Outside of components we determine the HTML5 elements, margins and spacings
 
 
 ### TO DO
@@ -88,10 +88,11 @@ For example:
 ### Extras
 - [x] Dark mode switcher
 - [x] Switch between GRID or LIST view on the `/shows` and `/search` page.
+- [x] Paged TV Shows & Search Results (using `@tanstack/vue-query`)
+- [x] Componentize the `<Overview />` further into child component
 - [x] Add a loading spinner or skeleton when fetching data on Home
 - [ ] Add a loading spinner or skeleton when fetching data on other pages
-- [ ] Paged TV Shows & Search Results (using `@tanstack/vue-query`)
-- [x] Componentize the `<Overview />` further into child component
+- [ ] Save favourite shows in local storage with Pinia
 - [ ] e2e tests using Playwright
 
 ----

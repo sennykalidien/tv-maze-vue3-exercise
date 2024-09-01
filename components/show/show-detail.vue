@@ -3,7 +3,7 @@
  * ShowDetail component
  * Consumes the useShowDetail composable
  * Renders the OverviewItemDetail component
- * @prop showId - The show id
+ * @prop showId - the ID of the show needed for API request
  */
 import { useShowDetail } from "~/composables";
 
@@ -16,7 +16,7 @@ const { data, loading, error } = useShowDetail({ showId: props.showId });
 </script>
 
 <template>
-  <content-loader :data="data" :error="error" :loading="loading">
+  <ContentLoader :data="data" :error="error" :loading="loading">
     <OverviewItemDetail v-if="data" :item="data" />
-  </content-loader>
+  </ContentLoader>
 </template>
