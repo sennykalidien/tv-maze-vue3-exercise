@@ -1,17 +1,17 @@
 <template>
   <div class="flex flex-col justify-between min-h-full h-full">
     <header>
-      <Container>
+      <CommonContainer>
         <slot name="base-header" />
-      </Container>
+      </CommonContainer>
     </header>
     <main>
       <slot />
     </main>
-    <footer class="py-10 px-4 bg-gray-950 mt-auto">
-      <Container>
+    <footer class="py-10 bg-gray-950 mt-auto">
+      <CommonContainer>
         <slot name="base-footer" />
-      </Container>
+      </CommonContainer>
     </footer>
   </div>
 </template>

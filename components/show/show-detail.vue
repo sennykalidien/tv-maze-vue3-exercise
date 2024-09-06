@@ -16,7 +16,7 @@ const { data, loading, error } = useShowDetail({ showId: props.showId });
 </script>
 
 <template>
-  <ContentLoader :data="data" :error="error" :loading="loading">
-    <OverviewItemDetail v-if="data" :item="data" />
-  </ContentLoader>
+  <CommonContentLoader :data="data" :error="error" :loading="loading">
+    <CommonOverviewItemDetail v-if="data" :item="data" />
+  </CommonContentLoader>
 </template>

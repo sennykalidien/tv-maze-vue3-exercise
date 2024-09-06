@@ -19,8 +19,9 @@ export const sortDataByRating = (data: Data[]): Data[] => {
 /**
  * Categorize data metalist item value by key
  * @param data
+ * @param key
  */
-export const categorizeDataByMetaKey = (data: Data[], key = "Genres"): DataCategorized[] => {
+export const categorizeDataByMetaItemKey = (data: Data[], key: string): DataCategorized[] => {
   const categorizedOverview: { [key: string]: Data[] } = {};
 
   data.forEach((item) => {
@@ -51,5 +52,5 @@ export const categorizeDataByMetaKey = (data: Data[], key = "Genres"): DataCateg
  * @param data
  */
 export const categorizeDataByGenre = (data: Data[]): DataCategorized[] => {
-  return categorizeDataByMetaKey(data, "Genres");
+  return categorizeDataByMetaItemKey(data, "Genres");
 }

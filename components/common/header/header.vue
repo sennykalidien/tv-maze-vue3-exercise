@@ -3,10 +3,10 @@
     <NuxtLink to="/" class="shrink-0">
       <img src="/logo.png" alt="Logo" class="h-10" >
     </NuxtLink>
-    <Search placeholder="Search TV Shows" />
+    <CommonSearch placeholder="Search TV Shows" />
     <div class="flex flex-col md:flex-row items-center gap-5 md:gap-10">
-      <Menu />
-      <DarkModeSwitcher />
+      <CommonMenu />
+      <CommonDarkModeSwitcher />
     </div>
   </div>
 </template>

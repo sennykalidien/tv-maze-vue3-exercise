@@ -38,8 +38,7 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
 - View TV Show details
 
 ## Future Improvement
-- Add more unit tests
-- Fine-tune design
+- More unit tests
 - State Management with Pinia for storing favourite shows
 - Use more of Vue / Nuxt, like:
   - Provide / Inject
@@ -48,28 +47,35 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
   
 
 ## Approach
-- All contextual logic (TV Shows) is scoped and handled in components located in `/components/shows` & `/components/show`. 
-- All other components are 'generic' components without contextual knowledge about TV Shows or API structures.
-- Utils in `/utils/data` helps transform the API Data to a generic data format. 
-  - This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres.
-- We use the `<Overview>` component `components/overview/[component].vue to use this data format to display the shows.
-- The Overview component in `/components/overview`  is used to display the transformed data in a grid, list or horizontal scrolling view.
+- Logical components (contextual) 
+  - API calls, data transformation and rendering are being handled in its own components `/components/shows` & `/components/show`. These components could be standalone and used in many other contexts (pages, other components, sharable within apps as packages). 
+- Generic Components
+  - All other components are 'generic' components without contextual knowledge about TV Shows or API structures. It used the generic `Data` type to render data and uses some inheritance.
+  - Mainly for UI components.
+  - We use components in `components/overview` & `components/overview-item` to render the transformed data to display the TV Shows in different layouts.
+- Clear separation of concerns within components
+  - Component are separated by logic or presentation of data
+  - Outside of components we determine things like data handling, which HTML5 elements we wrap them, margins and spacings
+- Utils 
+  - `/utils/data` helps transform the API Data to a generic data format. 
+    - This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres.
+- Composables
+  - `/composables/shows` & `/composables/show` are used to fetch the data from the API and transform the data to a generic format.
 
 ### Showcase of coding principles
-- DRY
-  - <content
-### Abstraction & separation of concerns
-**This is over-engineerd for what it needs to do.**
+DRY, Single Responsibility Principle, Composition over inheritance, Separation of concerns, Abstraction, Future-proofing, Scalability, Reusability & Maintainability.
+
+### Why this level of abstraction & separation of concerns?
+**I agree, this is over-engineerd for what it needs to do for such a small application.**
 
 The data didn't need to be transformed and logic didn't need to be abstracted. 
 
-The decision behind this is that I want to display my thinking process and how I would approach a project the best. i.e. by thinking more abstract and future-proof.
-- Use different apis to get shows or additional information about a show
-- Seperate the data from the view (usually done with a dataLayer from a server)
-- Business logic from the view
-- Handle things outside of components
-  - Component only focus on the presentation as much as possible
-  - Outside of components we determine the HTML5 elements, margins and spacings
+The rationale behind this is that I want to display my thought process and how I would normally approach a project, by thinking more abstract and steps ahead.
+
+Because what if we would:
+- use other api services to get additional information about a show or we would like to also display movies later on?
+- seperate the data from the view (usually done with a dataLayer from a server)
+- get a lot of business logic
 
 
 ### TO DO
@@ -90,9 +96,9 @@ The decision behind this is that I want to display my thinking process and how I
 - [x] Switch between GRID or LIST view on the `/shows` and `/search` page.
 - [x] Paged TV Shows & Search Results (using `@tanstack/vue-query`)
 - [x] Componentize the `<Overview />` further into child component
-- [x] Add a loading spinner or skeleton when fetching data on Home
+- [x] Add a skeleton when fetching data on Home
 - [ ] Add a loading spinner or skeleton when fetching data on other pages
-- [ ] Save favourite shows in local storage with Pinia
+- [ ] Store favourite shows in a state manager like `Pinia`
 - [ ] e2e tests using Playwright
 
 ----

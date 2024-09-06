@@ -4,15 +4,15 @@ const id = ref(route.params.id) as unknown as string;
 </script>
 
 <template>
-  <LayoutPage>
+  <CommonLayoutPage>
     <template #page-header>
-      <PageHeader>
+      <CommonPageHeader>
         <h1>TV Show</h1>
-      </PageHeader>
+      </CommonPageHeader>
     </template>
 
-    <Container class="my-10">
+    <CommonContainer class="my-10">
       <ShowDetail :show-id="id" />
-    </Container>
-  </LayoutPage>
+    </CommonContainer>
+  </CommonLayoutPage>
 </template>

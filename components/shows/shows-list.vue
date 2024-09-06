@@ -11,12 +11,11 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const { data, loading, error } =  useShowsList()
-const dataLimited = computed(() => props.limit && props.limit > 0 && data.value.slice(0, props.limit))
+const { data, loading, error } =  useShowsList({ limit: props.limit })
 </script>
 
 <template>
-  <ContentLoader :data="data" :error="error" :loading="loading">
-    <Overview :items="dataLimited ? dataLimited : data" />
-  </ContentLoader>
+  <CommonContentLoader :data="data" :error="error" :loading="loading">
+    <CommonOverview :items="data" />
+  </CommonContentLoader>
 </template>

@@ -16,7 +16,7 @@ const { data, loading, error } = useShowsSearchedList({ searchQuery: props.searc
 </script>
 
 <template>
-  <ContentLoader :data="data" :error="error" :loading="loading">
-    <Overview :items="data" />
-  </ContentLoader>
+  <CommonContentLoader :data="data" :error="error" :loading="loading">
+    <CommonOverview :items="data" />
+  </CommonContentLoader>
 </template>

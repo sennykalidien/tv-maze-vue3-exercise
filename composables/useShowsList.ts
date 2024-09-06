@@ -4,6 +4,10 @@ import {categorizeDataByGenre, mutateShowsToData, sortDataByRating} from "~/util
 import type {Data, DataCategorized, SearchedShow, Show} from "~/types";
 import {useLoadingState} from "./shared";
 
+interface ShowListParams {
+  limit?: number
+}
+
 interface ShowsList<TData> {
   data: Ref<TData>;
   loading: Ref<boolean>;
@@ -16,13 +20,17 @@ interface ShowsListPaged<TData> extends ShowsList<TData> {
   loadingNextPage: Ref<boolean>;
 }
 
-export function useShowsList(): ShowsList<Data[]> {
-  const {data: apiData, pending, error} = useTvmazeData<Show[] | null>("/shows");
+export function useShowsList({ limit }: ShowListParams): ShowsList<Data[]> {
+  const { data: apiData, pending, error} = useTvmazeData<Show[] | null>("/shows");
 
   const data = computed(() => {
     if (!apiData.value) return [];
 
-    return sortDataByRating(mutateShowsToData(apiData.value));
+    const transformedData = sortDataByRating(mutateShowsToData(apiData.value));
+
+    if(limit) return transformedData.slice(0, limit)
+
+    return transformedData
   });
 
   const loading = useLoadingState(data, pending)

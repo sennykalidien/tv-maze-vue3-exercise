@@ -23,14 +23,14 @@ const { overviewLayout, switchLayout } = useOverviewLayoutSwitcher();
   <section>
     <div class="flex justify-between items-center mb-5">
       <h2 class="text-lg">{{ totalItems }} Results</h2>
-      <OverviewLayoutSwitcher @change="switchLayout" />
+      <CommonOverviewLayoutSwitcher @change="switchLayout" />
     </div>
 
     <template v-if="overviewLayout === OverviewLayout.Grid">
-      <OverviewGrid :items="items" />
+      <CommonOverviewGrid :items="items" />
     </template>
     <template v-else-if="overviewLayout === OverviewLayout.List">
-      <OverviewList :items="items" />
+      <CommonOverviewList :items="items" />
     </template>
   </section>
 </template>

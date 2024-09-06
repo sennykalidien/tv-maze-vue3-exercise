@@ -12,7 +12,7 @@ const { data, loading, error} = useShowsCategorizedList();
 </script>
 
 <template>
-  <ContentLoader :data="data" :error="error" :loading="loading">
+  <CommonContentLoader :data="data" :error="error" :loading="loading">
     <template #loadingContent>
       <LoadingRow />
       <LoadingRow />
@@ -27,9 +27,9 @@ const { data, loading, error} = useShowsCategorizedList();
           <header class="text-center">
             <h2 class="font-bold text-2xl capitalize">{{ categoryName }}</h2>
           </header>
-          <OverviewHorizontalScroll :items="items" />
+          <CommonOverviewHorizontalScroll :items="items" />
         </section>
       </template>
     </template>
-  </ContentLoader>
+  </CommonContentLoader>
 </template>

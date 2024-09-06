@@ -4,7 +4,7 @@
  * child: OverviewItemVertical
  * @prop: items
  */
-import type { OverviewItem } from "~/types/index.js";
+import type { OverviewItem } from "~/types";
 
 interface Props {
   items: OverviewItem[];
@@ -19,7 +19,7 @@ defineProps<Props>();
       <NuxtLink :to="item.url" class="h-full">
         <UCard class="h-full">
           <article>
-            <OverviewItemVertical :item="item" />
+            <CommonOverviewItemVertical :item="item" />
           </article>
         </UCard>
       </NuxtLink>

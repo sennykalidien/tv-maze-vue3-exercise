@@ -1,15 +1,15 @@
 <template>
-  <LayoutPage>
+  <CommonLayoutPage>
     <template #page-header>
-      <PageHeader>
+      <CommonPageHeader>
         <h1>TV Shows</h1>
-      </PageHeader>
+      </CommonPageHeader>
     </template>
 
-    <Container class="my-10">
+    <CommonContainer class="my-10">
       <ShowsList :limit="25" />
-    </Container>
-  </LayoutPage>
+    </CommonContainer>
+  </CommonLayoutPage>
 </template>
 <script setup lang="ts">
 </script>
