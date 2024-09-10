@@ -1,4 +1,6 @@
-export const dataCategorized = [
+import type {DataCategorized} from "~/types";
+
+export const dataCategorized: DataCategorized[] = [
   {
     Action: [
       {

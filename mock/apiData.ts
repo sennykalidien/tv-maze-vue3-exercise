@@ -1,4 +1,6 @@
-export const apiData = [
+import type {Show} from "~/types";
+
+export const apiData: Show[] = [
   {
     id: 1,
     url: "https://www.tvmaze.com/shows/1/under-the-dome",
@@ -9,8 +11,8 @@ export const apiData = [
     status: "Ended",
     runtime: 60,
     averageRuntime: 60,
-    premiered: "2013-06-24",
-    ended: "2015-09-10",
+    premiered: "2013-06-24" as unknown as Date,
+    ended: "2015-09-10" as unknown as Date,
     officialSite: "http://www.cbs.com/shows/under-the-dome/",
     schedule: {
       time: "22:00",
@@ -64,8 +66,8 @@ export const apiData = [
     status: "Ended",
     runtime: 60,
     averageRuntime: 60,
-    premiered: "2011-09-22",
-    ended: "2016-06-21",
+    premiered: "2011-09-22" as unknown as Date,
+    ended: "2016-06-21" as unknown as Date,
     officialSite: "http://www.cbs.com/shows/person_of_interest/",
     schedule: {
       time: "22:00",
@@ -119,8 +121,8 @@ export const apiData = [
     status: "Ended",
     runtime: 60,
     averageRuntime: 60,
-    premiered: "2014-01-11",
-    ended: "2016-04-15",
+    premiered: "2014-01-11" as unknown as Date,
+    ended: "2016-04-15" as unknown as Date,
     officialSite: "http://bitten.space.ca/",
     schedule: {
       time: "22:00",

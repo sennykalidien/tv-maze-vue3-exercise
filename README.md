@@ -47,20 +47,22 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
   
 
 ## Approach
-- Logical components (contextual) 
-  - API calls, data transformation and rendering are being handled in its own components `/components/shows` & `/components/show`. These components could be standalone and used in many other contexts (pages, other components, sharable within apps as packages). 
-- Generic Components
-  - All other components are 'generic' components without contextual knowledge about TV Shows or API structures. It used the generic `Data` type to render data and uses some inheritance.
-  - Mainly for UI components.
-  - We use components in `components/overview` & `components/overview-item` to render the transformed data to display the TV Shows in different layouts.
-- Clear separation of concerns within components
-  - Component are separated by logic or presentation of data
-  - Outside of components we determine things like data handling, which HTML5 elements we wrap them, margins and spacings
-- Utils 
-  - `/utils/data` helps transform the API Data to a generic data format. 
-    - This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres.
+Clear separation of concerns within components, composables and utils.
+
+- Components
+  - Logical components (contextual) - Compositions
+    - `/components/shows` & `/components/show` -> `<Shows />` & `<Show />`
+    - API calls, data transformation and rendering are being handled in its own components. These components could be standalone and used in many other contexts (pages, other components, sharable within apps as packages). 
+  - Generic Components (common) - Inheritance
+    - `/components/common` -> `<Common[ComponentName] />`
+    - Generic components without contextual knowledge about TV Shows or API structures. It used the generic `Data` type to render data and uses some inheritance.
+    - Mainly for UI.
+    - We use components in `components/common/overview` & `components/common/overview-item` to render the transformed data to display the TV Shows in different layouts.
+    - Outside of components we determine things like data handling, which HTML5 elements we wrap them, margins and spacings
 - Composables
   - `/composables/shows` & `/composables/show` are used to fetch the data from the API and transform the data to a generic format.
+- Utils
+  - `/utils/data` helps transform the API Data to a generic data format. This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres. 
 
 ### Showcase of coding principles
 DRY, Single Responsibility Principle, Composition over inheritance, Separation of concerns, Abstraction, Future-proofing, Scalability, Reusability & Maintainability.
