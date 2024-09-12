@@ -1,6 +1,6 @@
 import type { Data } from "~/types";
 
-export const data: Data = [
+export const data: Data[] = [
   {
     id: 1,
     title: "Show 1",
@@ -33,7 +33,7 @@ export const data: Data = [
   },
 ];
 
-export const dataWithMissingRating: Data = [
+export const dataWithMissingRating: Data[] = [
   ...data,
   {
     id: 4,

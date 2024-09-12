@@ -1,37 +1,22 @@
 <script lang="ts" setup>
-import { sortDataByRating, mutateShowToData } from "~/utils";
-import type { SearchedShow } from "~/types";
+/**
+ * Shows list component
+ * consumes the useShowsSearchedList composable
+ * and renders the overview component
+ * @prop {String} searchQuery - search query
+ */
+import { useShowsSearchedList } from "~/composables";
 
 interface Props {
   searchQuery: string;
 }
 
 const props = defineProps<Props>();
-
-const {
-  data: apiData,
-  pending,
-  error,
-} = await useTvmazeData<SearchedShow[] | null>(`/search/shows?q=${props.searchQuery}`);
-
-const data = computed(() => {
-  if (!apiData.value) return [];
-  const shows = apiData.value.map((show) => show.show);
-
-  return sortDataByRating(mutateShowToData(shows));
-});
+const { data, loading, error } = useShowsSearchedList({ searchQuery: props.searchQuery})
 </script>
 
 <template>
-  <content-loader :data="data" :error="error" :loading="pending">
-    <template #errorContent>
-      <p>An error has occurred</p>
-    </template>
-    <template #loadingContent>
-      <div>Skeleton loader</div>
-    </template>
-    <template #content>
-      <Overview :items="data" />
-    </template>
-  </content-loader>
+  <CommonContentLoader :data="data" :error="error" :loading="loading">
+    <CommonOverview :items="data" />
+  </CommonContentLoader>
 </template>

@@ -4,12 +4,12 @@ setTimeout(() => (loading.value = false), 1000);
 </script>
 
 <template>
-  <LayoutPage>
+  <CommonLayoutPage>
     <template v-if="loading">
-      <SplashScreen />
+      <CommonSplashScreen />
     </template>
     <template v-else>
       <ShowsListCategorized />
     </template>
-  </LayoutPage>
+  </CommonLayoutPage>
 </template>

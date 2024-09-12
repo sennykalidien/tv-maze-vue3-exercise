@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 /**
- * Overview Component
+ * Overview Horizontal Scroll
+ * Scrollable Horizontal Overview Of Items
  * @prop: items
  */
 import type { OverviewItem } from "~/types";
@@ -14,12 +15,10 @@ defineProps<Props>();
 
 <template>
   <ul class="flex gap-1 overflow-x-auto py-3">
-    <li v-for="item in items" :key="`tv-show-horizontal-item-${item.id}`" class="flex-shrink-0 flex-grow-0 w-32">
+    <li v-for="item in items" :key="`overview-horizontal-item-${item.id}`" class="flex-shrink-0 flex-grow-0 w-32">
       <NuxtLink :to="item.url">
-        <article>
-          <figure>
-            <NuxtImg class="w-full" :src="item.image" />
-          </figure>
+        <article class="transition ease-in-out hover:scale-110">
+          <NuxtImg class="w-full" :src="item.image" loading="lazy" placeholder />
         </article>
       </NuxtLink>
     </li>
@@ -40,7 +39,7 @@ defineProps<Props>();
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 2rem;
-  background: #1e1e1e;
+  background: #2e2e2e;
 }
 
 /* Handle on hover */

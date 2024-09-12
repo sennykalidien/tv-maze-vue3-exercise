@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppConfig from "./appConfig";
+import AppConfig from "./config/app.config";
 
 useHead({
   title: AppConfig.title,
@@ -7,18 +7,19 @@ useHead({
 </script>
 
 <template>
+  <NuxtLoadingIndicator />
   <NuxtLayout>
-    <LayoutBase>
+    <CommonLayoutBase>
       <template #base-header>
-        <Header />
+        <CommonHeader />
       </template>
-      <template #base-content>
-        <NuxtPage />
-      </template>
+
+      <NuxtPage />
+
       <template #base-footer>
-        <Footer />
+        <CommonFooter />
       </template>
-    </LayoutBase>
+    </CommonLayoutBase>
   </NuxtLayout>
 </template>
 

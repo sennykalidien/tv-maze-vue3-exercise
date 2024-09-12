@@ -1,4 +1,15 @@
 <script lang="ts" setup>
+interface Props {
+  placeholder: string
+}
+
+withDefaults(defineProps<Props>(), {
+  placeholder: "Search",
+})
+
+const route = useRoute();
+const searchQuery = route.query.q as string;
+
 async function handleSearch(event: Event) {
   const queryValue = (event.currentTarget as HTMLInputElement).value;
   const urlParams = new URLSearchParams(`q=${queryValue}`);
@@ -10,5 +21,5 @@ async function handleSearch(event: Event) {
 </script>
 
 <template>
-  <UInput type="search" placeholder="Search TV Shows" class="w-full" @keyup.enter="handleSearch" />
+  <UInput type="search" :placeholder="placeholder" class="w-full" :model-value="searchQuery" @keyup.enter="handleSearch" />
 </template>

@@ -1,28 +1,21 @@
 <script lang="ts" setup>
-import { mutateShowToData, sortDataByRating } from "~/utils";
-import type { Show } from "~/types/shows";
+/**
+ * Shows list component
+ * consumes the useShowsList composable
+ * renders the overview component
+ */
+import { useShowsList } from "~/composables/useShowsList";
 
-const { data: apiData, pending, error } = await useTvmazeData<Show[] | null>("/shows");
+interface Props {
+  limit?: number;
+}
 
-const data = computed(() => {
-  if (!apiData.value) return [];
-
-  return sortDataByRating(mutateShowToData(apiData.value));
-});
+const props = defineProps<Props>()
+const { data, loading, error } =  useShowsList({ limit: props.limit })
 </script>
 
 <template>
-  <content-loader :data="data" :error="error" :loading="pending">
-    <template #errorContent>
-      <p>An error has occurred</p>
-    </template>
-    <template #loadingContent>
-      <div>Skeleton loader</div>
-    </template>
-    <template #content>
-      <div class="container mx-auto">
-        <Overview :items="data" />
-      </div>
-    </template>
-  </content-loader>
+  <CommonContentLoader :data="data" :error="error" :loading="loading">
+    <CommonOverview :items="data" />
+  </CommonContentLoader>
 </template>

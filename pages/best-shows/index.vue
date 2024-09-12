@@ -7,7 +7,9 @@
     </template>
 
     <CommonContainer class="my-10">
-      <ShowsListPaged />
+      <ShowsList :limit="25" />
     </CommonContainer>
   </CommonLayoutPage>
 </template>
+<script setup lang="ts">
+</script>

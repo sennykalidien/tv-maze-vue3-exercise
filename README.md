@@ -11,46 +11,74 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
 ## Application Overview
 
 ### Type of Application
-- Client Side Rendered App
+- CSR (Client Side Rendering) App
 
 ### Technology Stack
 - Vue 3
-- Nuxt
-- Tailwind CSS
-- Vitest
+- Nuxt - used for paged routing & SSG (Static Site Generation) 
+- Tailwind CSS - for rapid fast css styling
+- Vitest - for writing unit tests
 
 ### Dependencies
 - Nuxt
-  - Icon
-  - UI
-  - Image
-  - Eslint
+  - Icon - Easy add icons
+  - UI - Easy add UI components
+  - Image - Responsive image handeling
+  - Eslint - Linting code quality
 - API
-  - Nuxt API Party - easily setup REST endpoints globally and do calls
-  - Tanstack - Easily make **paged** REST calls
+  - Nuxt API Party - Generates composables to do cached REST API calls
+  - Tanstack - Easily make **paged** REST API calls
 
 ## Features & Functionality
 
 ### Features
-- View TV shows categorized and sorted by highest rating first
-- View overview of all TV show in a grid or list
-- Search for TV shows
-- View TV show details
+- First view of TV Shows on Home which are categorized and sorted by highest rating first
+- View overview of all TV Show in a grid or list
+- Search for TV Shows
+- View TV Show details
 
 ## Future Improvement
-- Add more unit tests
-- Fine tune design
-- Use more of Vue, like:
+- More unit tests
+- State Management with Pinia for storing favourite shows
+- Use more of Vue / Nuxt, like:
   - Provide / Inject
-  - Create more Composables using the Composition API
+  - Reactive
+  - LazyComponents
+  
 
 ## Approach
-- All contextual logic is handles in `/components/shows` & `/components/show`. 
-- All other components should be 'generic' components without knowledge about TV Shows.
-- Utils functions in /utils/data helps transform the API Data (which can vary per query) to a more simplistic data format so that it can be used by `components/overview/[components].
-  - This helps to get the data in a fixed format so it can be typed accordingly and used generic components (like `overview`).
-  - There are also util functions available to sort and categorize the TV shows based on their genres.
-- The Overview component in `/components/overview`  is used to display the transformed data in a grid, list or horizontal scrolling view.
+Clear separation of concerns within components, composables and utils.
+
+- Components
+  - Logical components (contextual) - Compositions
+    - `/components/shows` & `/components/show` -> `<Shows />` & `<Show />`
+    - API calls, data transformation and rendering are being handled in its own components. These components could be standalone and used in many other contexts (pages, other components, sharable within apps as packages). 
+  - Generic Components (common) - Inheritance
+    - `/components/common` -> `<Common[ComponentName] />`
+    - Generic components without contextual knowledge about TV Shows or API structures. It used the generic `Data` type to render data and uses some inheritance.
+    - Mainly for UI.
+    - We use components in `components/common/overview` & `components/common/overview-item` to render the transformed data to display the TV Shows in different layouts.
+    - Outside of components we determine things like data handling, which HTML5 elements we wrap them, margins and spacings
+- Composables
+  - `/composables/shows` & `/composables/show` are used to fetch the data from the API and transform the data to a generic format.
+- Utils
+  - `/utils/data` helps transform the API Data to a generic data format. This helps to get the data in a fixed format so we can easily sort, map, filter and reduce data, i.e. sort and categorize the TV shows based on their genres. 
+
+### Showcase of coding principles
+DRY, Single Responsibility Principle, Composition over inheritance, Separation of concerns, Abstraction, Future-proofing, Scalability, Reusability & Maintainability.
+
+### Why this level of abstraction & separation of concerns?
+**I agree, this is over-engineerd for what it needs to do for such a small application.**
+
+The data didn't need to be transformed and logic didn't need to be abstracted. 
+
+The rationale behind this is that I want to display my thought process and how I would normally approach a project, by thinking more abstract and steps ahead.
+
+Because what if we would:
+- use other api services to get additional information about a show or we would like to also display movies later on?
+- seperate the data from the view (usually done with a dataLayer from a server)
+- get a lot of business logic
+
 
 ### TO DO
 - [x] Create a Vue / Nuxt 3 project
@@ -61,16 +89,18 @@ This Repo serves as an exercise in using Vue 3 with Nuxt to create a TV show app
 - [x] Sort TV Shows by rating
 - [x] Responsive & Fine tune Design
 - [x] Create unit tests
-  - [x] Data utils
-  - [ ] Typechecks
+  - [x] Utils
+  - [ ] Components
+  - [ ] Composables
 
 ### Extras
 - [x] Dark mode switcher
 - [x] Switch between GRID or LIST view on the `/shows` and `/search` page.
-- [ ] Add a loading spinner or skeleton when fetching data
-- [ ] Paged TV Shows & Search Results (using `@tanstack/vue-query`)
-- [ ] Componentize the `<Overview />` further into child components (and make use of useOverviewLayout() in child components to get the state)
-- [ ] Add more unit tests, also for components
+- [x] Paged TV Shows & Search Results (using `@tanstack/vue-query`)
+- [x] Componentize the `<Overview />` further into child component
+- [x] Add a skeleton when fetching data on Home
+- [ ] Add a loading spinner or skeleton when fetching data on other pages
+- [ ] Store favourite shows in a state manager like `Pinia`
 - [ ] e2e tests using Playwright
 
 ----
@@ -178,10 +208,7 @@ bun run preview
 ```
 
 ### Test
-Tests are written using Vitest. To run the tests, run:
-
-```bash
-Run:
+Tests are written using Vitest, run:
 
 ```bash
 # npm

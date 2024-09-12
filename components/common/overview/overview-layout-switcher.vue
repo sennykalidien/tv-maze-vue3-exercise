@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * Overview Layout Switcher Component
+ * @emits @change
+ */
 import { OverviewLayout } from "~/types";
 
 const emits = defineEmits(["change"]);

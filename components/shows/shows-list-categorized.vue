@@ -1,37 +1,35 @@
 <script lang="ts" setup>
-import { categorizeDataByGenre, sortDataByRating, mutateShowToData } from "~/utils";
-import type { Show } from "~/types";
+/**
+ * Shows list component
+ * consumes the useShowsCategorizedList composable
+ * and renders the overview-horizontal-scroll component
+ * @prop {Array} data - list of shows
+ */
+import LoadingRow from "~/components/shows/_internal/loading-row.vue";
+import { useShowsCategorizedList } from "~/composables/useShowsList";
 
-const { data: apiData, pending, error } = await useTvmazeData<Show[] | null>("/shows");
-
-const data = computed(() => {
-  if (!apiData.value) return [];
-
-  return categorizeDataByGenre(sortDataByRating(mutateShowToData(apiData.value)));
-});
+const { data, loading, error} = useShowsCategorizedList();
 </script>
 
 <template>
-  <content-loader :data="data" :error="error" :loading="pending">
-    <template #errorContent>
-      <p>An error has occurred</p>
-    </template>
+  <CommonContentLoader :data="data" :error="error" :loading="loading">
     <template #loadingContent>
-      <div>Skeleton loader</div>
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
     </template>
-    <template #content>
-      <div class="mx-auto">
-        <template v-if="data.length > 0">
-          <section v-for="(category, index) in data" :key="`tv-show-category-${index}`" class="py-5">
-            <template v-for="(value, key) in category" :key="`tv-show-category-name-${key}`">
-              <header class="text-center">
-                <h2 class="font-bold text-2xl capitalize">{{ key }}</h2>
-              </header>
-              <OverviewHorizontalScroll :items="value" />
-            </template>
-          </section>
-        </template>
-      </div>
+
+    <template v-if="data.length > 0">
+      <template v-for="(category, index) in data" :key="`tv-show-category-${index}`">
+        <section v-for="(items, categoryName) in category" :key="`tv-show-category-name-${categoryName}`" class="py-5">
+          <header class="text-center">
+            <h2 class="font-bold text-2xl capitalize">{{ categoryName }}</h2>
+          </header>
+          <CommonOverviewHorizontalScroll :items="items" />
+        </section>
+      </template>
     </template>
-  </content-loader>
+  </CommonContentLoader>
 </template>

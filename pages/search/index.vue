@@ -4,12 +4,15 @@ const searchQuery = route.query.q as string;
 </script>
 
 <template>
-  <LayoutPage>
+  <CommonLayoutPage>
     <template #page-header>
-      <h1>Search Results</h1>
+      <CommonPageHeader>
+        <h1>Search</h1>
+        <p class="text-lg">Results for "{{ searchQuery }}"</p>
+      </CommonPageHeader>
     </template>
-    <div class="container mx-auto">
+    <CommonContainer class="my-10">
       <ShowsSearchResult :search-query="searchQuery" />
-    </div>
-  </LayoutPage>
+    </CommonContainer>
+  </CommonLayoutPage>
 </template>
